@@ -8,6 +8,8 @@ interface MagneticButtonProps {
   onClick?: () => void;
   href?: string;
   'data-cursor'?: string;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
 }
 
 export default function MagneticButton({
@@ -17,6 +19,8 @@ export default function MagneticButton({
   onClick,
   href,
   'data-cursor': dataCursor,
+  onMouseEnter,
+  onMouseLeave,
 }: MagneticButtonProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -38,7 +42,14 @@ export default function MagneticButton({
 
     const handleMouseLeave = () => {
       setPosition({ x: 0, y: 0 });
+      onMouseLeave?.();
     };
+
+    const handleMouseEnter = () => {
+      onMouseEnter?.();
+    };
+
+    element.addEventListener('mouseenter', handleMouseEnter);
 
     element.addEventListener('mousemove', handleMouseMove);
     element.addEventListener('mouseleave', handleMouseLeave);
@@ -46,8 +57,9 @@ export default function MagneticButton({
     return () => {
       element.removeEventListener('mousemove', handleMouseMove);
       element.removeEventListener('mouseleave', handleMouseLeave);
+      element.removeEventListener('mouseenter', handleMouseEnter);
     };
-  }, [strength]);
+  }, [strength, onMouseEnter, onMouseLeave]);
 
   const content = (
     <motion.div

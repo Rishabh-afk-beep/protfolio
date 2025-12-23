@@ -1,30 +1,26 @@
-import Scene3D from '@/components/Scene3D';
-import Navigation from '@/components/Navigation';
-import Hero from '@/components/Hero';
-import About from '@/components/About';
-import Projects from '@/components/Projects';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
+import CustomCursor from '@/components/CustomCursor';
+import BrutalistNav from '@/components/BrutalistNav';
+import BrutalistHero from '@/components/BrutalistHero';
+import BrutalistProjects from '@/components/BrutalistProjects';
+import BrutalistAbout from '@/components/BrutalistAbout';
+import BrutalistContact from '@/components/BrutalistContact';
 
 const Index = () => {
   return (
-    <div className="relative min-h-screen overflow-x-hidden">
-      {/* 3D Background */}
-      <Scene3D />
+    <div className="relative min-h-screen overflow-x-hidden bg-background">
+      {/* Custom Cursor */}
+      <CustomCursor />
       
       {/* Navigation */}
-      <Navigation />
+      <BrutalistNav />
       
       {/* Main Content */}
-      <main className="relative z-10">
-        <Hero />
-        <About />
-        <Projects />
-        <Contact />
+      <main className="pt-20">
+        <BrutalistHero />
+        <BrutalistProjects />
+        <BrutalistAbout />
+        <BrutalistContact />
       </main>
-      
-      {/* Footer */}
-      <Footer />
     </div>
   );
 };

@@ -20,7 +20,7 @@ export default function BrutalistNav() {
         {/* Logo */}
         <MagneticButton href="#" data-cursor="HOME">
           <span className="text-display text-3xl md:text-4xl">
-            YN<span className="text-electric">.</span>
+            RD<span className="text-electric">.</span>
           </span>
         </MagneticButton>
 

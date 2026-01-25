@@ -74,39 +74,36 @@ export default function BrutalistContact() {
                 <TiltCard tiltAmount={8} className="border-l-4 border-electric pl-6 py-4">
                   <div className="font-mono text-xs text-muted-foreground mb-2">EMAIL</div>
                   <a 
-                    href="mailto:hello@example.com" 
+                    href="mailto:ranjanrishabh2002@gmail.com" 
                     className="text-2xl font-bold hover:text-electric transition-colors"
                     data-cursor="EMAIL"
                   >
-                    <TextScramble scrambleOnHover revealOnScroll={false}>HELLO@EXAMPLE.COM</TextScramble>
+                    <TextScramble scrambleOnHover revealOnScroll={false}>RANJANRISHABH2002@GMAIL.COM</TextScramble>
                   </a>
                 </TiltCard>
 
                 <TiltCard tiltAmount={8} className="border-l-4 border-foreground pl-6 py-4">
                   <div className="font-mono text-xs text-muted-foreground mb-2">SOCIALS</div>
                   <div className="flex gap-6">
-                    <MagneticButton href="https://github.com" data-cursor="GH">
+                    <MagneticButton href="https://github.com/Rishabh-afk-beep" data-cursor="GH">
                       <span className="text-lg font-bold hover:text-electric transition-colors">GITHUB</span>
                     </MagneticButton>
-                    <MagneticButton href="https://linkedin.com" data-cursor="IN">
+                    <MagneticButton href="https://linkedin.com/in/" data-cursor="IN">
                       <span className="text-lg font-bold hover:text-electric transition-colors">LINKEDIN</span>
-                    </MagneticButton>
-                    <MagneticButton href="https://twitter.com" data-cursor="X">
-                      <span className="text-lg font-bold hover:text-electric transition-colors">TWITTER</span>
                     </MagneticButton>
                   </div>
                 </TiltCard>
 
                 <TiltCard tiltAmount={8} className="border-l-4 border-foreground pl-6 py-4">
                   <div className="font-mono text-xs text-muted-foreground mb-2">LOCATION</div>
-                  <div className="text-lg">SAN FRANCISCO, CA</div>
+                  <div className="text-lg">INDIA</div>
                   <div className="font-mono text-sm text-muted-foreground flex items-center gap-2">
                     <motion.span 
                       className="w-2 h-2 bg-electric rounded-full"
                       animate={{ opacity: [1, 0.3, 1] }}
                       transition={{ repeat: Infinity, duration: 1.5 }}
                     />
-                    PST (UTC-8)
+                    IST (UTC+5:30)
                   </div>
                 </TiltCard>
               </div>
@@ -207,7 +204,7 @@ export default function BrutalistContact() {
         <motion.footer className="mt-24 pt-8 border-t-4 border-foreground">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="font-mono text-sm text-muted-foreground">
-              © {new Date().getFullYear()} <TextScramble scrambleOnHover revealOnScroll={false}>YOUR NAME</TextScramble>. ALL RIGHTS RESERVED.
+              © {new Date().getFullYear()} <TextScramble scrambleOnHover revealOnScroll={false}>RISHABH RANJAN DANGI</TextScramble>. ALL RIGHTS RESERVED.
             </div>
             <motion.div 
               className="font-mono text-sm text-muted-foreground flex items-center gap-2"

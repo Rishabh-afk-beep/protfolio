@@ -51,8 +51,8 @@ export default function BrutalistHero() {
         className="flex justify-between items-start relative z-10"
       >
         <div className="font-mono text-sm text-muted-foreground">
-          <div>LOCATION: <span className="text-flicker">EARTH</span></div>
-          <div>STATUS: <span className="text-electric pulse-glow inline-block px-1">AVAILABLE</span></div>
+          <div>LOCATION: <span className="text-flicker">INDIA</span></div>
+          <div>STATUS: <span className="text-electric pulse-glow inline-block px-1">AVAILABLE FOR HIRE</span></div>
         </div>
         <div className="font-mono text-sm text-right text-muted-foreground">
           <div>{time.toLocaleDateString('en-US', { weekday: 'long' }).toUpperCase()}</div>
@@ -73,9 +73,9 @@ export default function BrutalistHero() {
             initial={{ y: '100%' }}
             animate={{ y: 0 }}
             transition={{ delay: 0.5, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-display text-[20vw] md:text-[18vw] leading-[0.8] tracking-tight"
+            className="text-display text-[12vw] md:text-[10vw] leading-[0.8] tracking-tight"
           >
-            <GlitchText intensity="low">YOUR</GlitchText>
+            <GlitchText intensity="low">RISHABH</GlitchText>
           </motion.h1>
         </motion.div>
         
@@ -90,9 +90,9 @@ export default function BrutalistHero() {
               initial={{ y: '100%' }}
               animate={{ y: 0 }}
               transition={{ delay: 0.7, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-display text-[20vw] md:text-[18vw] leading-[0.8] tracking-tight text-electric neon-underline"
+              className="text-display text-[12vw] md:text-[10vw] leading-[0.8] tracking-tight text-electric neon-underline"
             >
-              <GlitchText intensity="high" continuous>NAME</GlitchText>
+              <GlitchText intensity="high" continuous>DANGI</GlitchText>
             </motion.h1>
           </motion.div>
           
@@ -122,13 +122,16 @@ export default function BrutalistHero() {
         >
           <div className="flex flex-wrap gap-4 font-mono text-sm md:text-base">
             <span className="electric-bg px-3 py-1 font-bold border-dance">
-              <TextScramble revealOnScroll={false} scrambleOnHover>DEVELOPER</TextScramble>
+              <TextScramble revealOnScroll={false} scrambleOnHover>FULL STACK DEV</TextScramble>
             </span>
             <span className="border-2 border-foreground px-3 py-1 hover:bg-foreground hover:text-background transition-colors">
-              <TextScramble revealOnScroll={false} scrambleOnHover>DESIGNER</TextScramble>
+              <TextScramble revealOnScroll={false} scrambleOnHover>REACT</TextScramble>
             </span>
-            <span className="border-2 border-foreground px-3 py-1 strike-through text-muted-foreground hover:text-electric transition-colors">
-              <TextScramble revealOnScroll={false} scrambleOnHover>CREATIVE</TextScramble>
+            <span className="border-2 border-foreground px-3 py-1 hover:bg-foreground hover:text-background transition-colors">
+              <TextScramble revealOnScroll={false} scrambleOnHover>PYTHON</TextScramble>
+            </span>
+            <span className="border-2 border-foreground px-3 py-1 hover:bg-foreground hover:text-background transition-colors">
+              <TextScramble revealOnScroll={false} scrambleOnHover>FASTAPI</TextScramble>
             </span>
           </div>
           

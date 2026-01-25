@@ -20,13 +20,36 @@ export default function BrutalistContact() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise((r) => setTimeout(r, 1000));
-    toast({
-      title: "MESSAGE SENT",
-      description: "I'll get back to you soon.",
-    });
-    setIsSubmitting(false);
-    (e.target as HTMLFormElement).reset();
+    
+    const formData = new FormData(e.target as HTMLFormElement);
+    formData.append('access_key', 'a9ea8e8a-5b2f-4b4d-a4ed-c50b279d7186');
+    
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      });
+      
+      const data = await response.json();
+      
+      if (data.success) {
+        toast({
+          title: "MESSAGE SENT",
+          description: "I'll get back to you soon.",
+        });
+        (e.target as HTMLFormElement).reset();
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      toast({
+        title: "ERROR",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -138,6 +161,7 @@ export default function BrutalistContact() {
                   <div className={`transition-transform duration-300 ${focusedField === 'name' ? 'scale-[1.02]' : ''}`}>
                     <label className="font-mono text-xs text-muted-foreground block mb-2">NAME *</label>
                     <Input
+                      name="name"
                       required
                       placeholder="JOHN DOE"
                       onFocus={() => setFocusedField('name')}
@@ -148,6 +172,7 @@ export default function BrutalistContact() {
                   <div className={`transition-transform duration-300 ${focusedField === 'email' ? 'scale-[1.02]' : ''}`}>
                     <label className="font-mono text-xs text-muted-foreground block mb-2">EMAIL *</label>
                     <Input
+                      name="email"
                       type="email"
                       required
                       placeholder="JOHN@EXAMPLE.COM"
@@ -161,6 +186,7 @@ export default function BrutalistContact() {
                 <div className={`transition-transform duration-300 ${focusedField === 'project' ? 'scale-[1.02]' : ''}`}>
                   <label className="font-mono text-xs text-muted-foreground block mb-2">PROJECT TYPE</label>
                   <Input
+                    name="project_type"
                     placeholder="WEB APP / WEBSITE / OTHER"
                     onFocus={() => setFocusedField('project')}
                     onBlur={() => setFocusedField(null)}
@@ -171,6 +197,7 @@ export default function BrutalistContact() {
                 <div className={`transition-transform duration-300 ${focusedField === 'message' ? 'scale-[1.02]' : ''}`}>
                   <label className="font-mono text-xs text-muted-foreground block mb-2">MESSAGE *</label>
                   <Textarea
+                    name="message"
                     required
                     rows={6}
                     placeholder="TELL ME ABOUT YOUR PROJECT..."

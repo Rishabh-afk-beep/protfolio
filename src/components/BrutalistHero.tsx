@@ -52,7 +52,7 @@ export default function BrutalistHero() {
         className="flex justify-between items-start relative z-10"
       >
         <div className="font-mono text-sm text-muted-foreground">
-          <div>LOCATION: <span className="text-flicker">INDIA</span></div>
+          <div>LOCATION: <span className="text-flicker">BENGALURU, INDIA</span></div>
           <div>STATUS: <span className="text-electric pulse-glow inline-block px-1">AVAILABLE FOR HIRE</span></div>
         </div>
         <div className="font-mono text-sm text-right text-muted-foreground">

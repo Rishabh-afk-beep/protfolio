@@ -89,7 +89,7 @@ export default function BrutalistContact() {
                     <MagneticButton href="https://github.com/Rishabh-afk-beep" data-cursor="GH">
                       <span className="text-lg font-bold hover:text-electric transition-colors">GITHUB</span>
                     </MagneticButton>
-                    <MagneticButton href="https://linkedin.com/in/" data-cursor="IN">
+                    <MagneticButton href="https://www.linkedin.com/in/rishabhranjan1221/" data-cursor="IN">
                       <span className="text-lg font-bold hover:text-electric transition-colors">LINKEDIN</span>
                     </MagneticButton>
                   </div>

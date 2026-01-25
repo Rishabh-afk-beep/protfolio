@@ -5,32 +5,26 @@ import TextScramble from './TextScramble';
 import { FloatingElement } from './ParallaxSection';
 
 const skills = [
-  { name: 'REACT', level: 95, color: 'electric' },
-  { name: 'TYPESCRIPT', level: 90, color: 'cold-blue' },
-  { name: 'NODE.JS', level: 85, color: 'hot-red' },
-  { name: 'PYTHON', level: 80, color: 'electric' },
-  { name: 'THREE.JS', level: 75, color: 'cold-blue' },
-  { name: 'POSTGRESQL', level: 85, color: 'hot-red' },
+  { name: 'REACT', level: 90, color: 'electric' },
+  { name: 'PYTHON', level: 85, color: 'cold-blue' },
+  { name: 'FASTAPI', level: 80, color: 'hot-red' },
+  { name: 'TYPESCRIPT', level: 75, color: 'electric' },
+  { name: 'JAVASCRIPT', level: 85, color: 'cold-blue' },
+  { name: 'TAILWIND CSS', level: 90, color: 'hot-red' },
 ];
 
 const experiences = [
   {
-    period: '2022 — NOW',
-    role: 'SENIOR DEVELOPER',
-    company: 'TECH CORP',
-    description: 'Leading frontend architecture and mentoring team members.',
+    period: '2023 — NOW',
+    role: 'FULL STACK DEVELOPER',
+    company: 'FREELANCE',
+    description: 'Building web applications and APIs for clients.',
   },
   {
-    period: '2020 — 2022',
-    role: 'FULLSTACK DEVELOPER',
-    company: 'STARTUP INC',
-    description: 'Built scalable applications from scratch.',
-  },
-  {
-    period: '2018 — 2020',
-    role: 'JUNIOR DEVELOPER',
-    company: 'AGENCY XYZ',
-    description: 'Developed client websites and web applications.',
+    period: '2022 — 2023',
+    role: 'LEARNING & BUILDING',
+    company: 'SELF-TAUGHT',
+    description: 'Mastering React, Python, and full-stack development.',
   },
 ];
 
@@ -66,15 +60,14 @@ export default function BrutalistAbout() {
           <div className="space-y-8">
             <div className="space-y-6">
               <p className="text-2xl md:text-3xl font-light leading-relaxed">
-                I'm a <span className="font-bold gradient-text">developer</span> and{' '}
-                <span className="font-bold gradient-text">designer</span> based in{' '}
-                <span className="electric-bg px-2 border-dance inline-block">San Francisco</span>.
+                I'm a <span className="font-bold gradient-text">full stack developer</span> based in{' '}
+                <span className="electric-bg px-2 border-dance inline-block">India</span>.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                I build things for the web with a focus on creating experiences that are fast, accessible, and visually striking. My work sits at the intersection of technology and design.
+                I build web applications with React on the frontend and Python/FastAPI on the backend. I love creating fast, accessible, and visually striking digital experiences.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                When I'm not coding, you'll find me exploring new technologies, contributing to open source, or experimenting with generative art.
+                When I'm not coding, you'll find me exploring new technologies, learning new frameworks, or experimenting with creative projects.
               </p>
             </div>
 
@@ -86,7 +79,7 @@ export default function BrutalistAbout() {
                     className="text-display text-5xl md:text-6xl text-electric"
                     whileHover={{ scale: 1.1 }}
                   >
-                    <TextScramble scrambleOnHover>5+</TextScramble>
+                    <TextScramble scrambleOnHover>1+</TextScramble>
                   </motion.div>
                   <div className="font-mono text-xs text-muted-foreground mt-2 group-hover:text-electric transition-colors">YEARS EXP</div>
                 </div>
@@ -97,7 +90,7 @@ export default function BrutalistAbout() {
                     className="text-display text-5xl md:text-6xl"
                     whileHover={{ scale: 1.1 }}
                   >
-                    <TextScramble scrambleOnHover>50+</TextScramble>
+                    <TextScramble scrambleOnHover>10+</TextScramble>
                   </motion.div>
                   <div className="font-mono text-xs text-muted-foreground mt-2 group-hover:text-electric transition-colors">PROJECTS</div>
                 </div>
@@ -197,16 +190,16 @@ export default function BrutalistAbout() {
         <motion.div className="mt-24 overflow-hidden border-y-4 border-foreground py-6 relative">
           {/* Double marquee for seamless loop */}
           <div className="flex whitespace-nowrap">
-            <div className="marquee flex">
+          <div className="marquee flex">
               <span className="text-display text-4xl md:text-6xl flex items-center gap-8">
-                {['REACT', '✦', 'TYPESCRIPT', '✦', 'NODE', '✦', 'PYTHON', '✦', 'THREE.JS', '✦', 'POSTGRESQL', '✦', 'DOCKER', '✦', 'AWS', '✦', 'FIGMA', '✦'].map((item, i) => (
+                {['REACT', '✦', 'PYTHON', '✦', 'FASTAPI', '✦', 'TYPESCRIPT', '✦', 'TAILWIND', '✦', 'JAVASCRIPT', '✦', 'REST APIs', '✦', 'GIT', '✦'].map((item, i) => (
                   <span key={i} className={item === '✦' ? 'text-electric' : 'hover:text-electric transition-colors'}>
                     {item}
                   </span>
                 ))}
               </span>
               <span className="text-display text-4xl md:text-6xl flex items-center gap-8 ml-8">
-                {['REACT', '✦', 'TYPESCRIPT', '✦', 'NODE', '✦', 'PYTHON', '✦', 'THREE.JS', '✦', 'POSTGRESQL', '✦', 'DOCKER', '✦', 'AWS', '✦', 'FIGMA', '✦'].map((item, i) => (
+                {['REACT', '✦', 'PYTHON', '✦', 'FASTAPI', '✦', 'TYPESCRIPT', '✦', 'TAILWIND', '✦', 'JAVASCRIPT', '✦', 'REST APIs', '✦', 'GIT', '✦'].map((item, i) => (
                   <span key={i} className={item === '✦' ? 'text-electric' : 'hover:text-electric transition-colors'}>
                     {item}
                   </span>

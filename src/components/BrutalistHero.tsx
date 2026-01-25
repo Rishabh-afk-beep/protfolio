@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { Download } from 'lucide-react';
 import MagneticButton from './MagneticButton';
 import GlitchText from './GlitchText';
 import TextScramble from './TextScramble';
@@ -148,20 +149,36 @@ export default function BrutalistHero() {
         transition={{ delay: 1.6 }}
         className="flex justify-between items-end relative z-10"
       >
-        <MagneticButton
-          onClick={scrollToProjects}
-          data-cursor="SCROLL"
-          className="border-4 border-foreground px-8 py-4 font-mono text-lg hover-brutal bg-background group"
-        >
-          <span className="group-hover:text-electric transition-colors">VIEW WORK</span>
-          <motion.span 
-            className="ml-2 inline-block"
-            animate={{ y: [0, 5, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
+        <div className="flex items-end gap-4">
+          <MagneticButton
+            onClick={scrollToProjects}
+            data-cursor="SCROLL"
+            className="border-4 border-foreground px-8 py-4 font-mono text-lg hover-brutal bg-background group"
           >
-            ↓
-          </motion.span>
-        </MagneticButton>
+            <span className="group-hover:text-electric transition-colors">VIEW WORK</span>
+            <motion.span 
+              className="ml-2 inline-block"
+              animate={{ y: [0, 5, 0] }}
+              transition={{ repeat: Infinity, duration: 1.5 }}
+            >
+              ↓
+            </motion.span>
+          </MagneticButton>
+
+          <MagneticButton
+            data-cursor="DOWNLOAD"
+            className="border-4 border-electric px-8 py-4 font-mono text-lg hover-brutal electric-bg text-raw-black group"
+          >
+            <a 
+              href="/resume.pdf" 
+              download="Rishabh_Ranjan_Dangi_Resume.pdf"
+              className="flex items-center gap-2"
+            >
+              <Download className="w-5 h-5" />
+              <span>RESUME</span>
+            </a>
+          </MagneticButton>
+        </div>
 
         <div className="hidden md:flex flex-col items-end gap-2">
           <motion.div 

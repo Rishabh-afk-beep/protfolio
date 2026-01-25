@@ -20,13 +20,13 @@ export default function EnhancedCursor() {
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
   
-  // Smoother spring config to reduce fluctuation
-  const springConfig = { damping: 35, stiffness: 250, mass: 0.5 };
+  // Balanced spring config - responsive but stable
+  const springConfig = { damping: 28, stiffness: 350, mass: 0.3 };
   const cursorXSpring = useSpring(cursorX, springConfig);
   const cursorYSpring = useSpring(cursorY, springConfig);
 
-  // Trail for smooth following - higher damping for stability
-  const trailSpringConfig = { damping: 45, stiffness: 150, mass: 0.8 };
+  // Trail follows slightly behind
+  const trailSpringConfig = { damping: 35, stiffness: 200, mass: 0.5 };
   const trailX = useSpring(cursorX, trailSpringConfig);
   const trailY = useSpring(cursorY, trailSpringConfig);
 

@@ -8,12 +8,12 @@ import GlitchText from './GlitchText';
 import TextScramble from './TextScramble';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/hooks/use-toast';
+import { toast } from 'sonner';
 
 export default function BrutalistContact() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
-  const { toast } = useToast();
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [focusedField, setFocusedField] = useState<string | null>(null);
 
@@ -33,8 +33,7 @@ export default function BrutalistContact() {
       const data = await response.json();
       
       if (data.success) {
-        toast({
-          title: "MESSAGE SENT",
+        toast.success("MESSAGE SENT", {
           description: "I'll get back to you soon.",
         });
         (e.target as HTMLFormElement).reset();
@@ -42,10 +41,8 @@ export default function BrutalistContact() {
         throw new Error('Form submission failed');
       }
     } catch (error) {
-      toast({
-        title: "ERROR",
+      toast.error("ERROR", {
         description: "Failed to send message. Please try again.",
-        variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);

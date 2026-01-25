@@ -73,9 +73,9 @@ export default function BrutalistHero() {
             initial={{ y: '100%' }}
             animate={{ y: 0 }}
             transition={{ delay: 0.5, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-display text-[12vw] md:text-[10vw] leading-[0.8] tracking-tight"
+            className="text-display text-[10vw] md:text-[8vw] leading-[0.8] tracking-tight"
           >
-            <GlitchText intensity="low">RISHABH</GlitchText>
+            <GlitchText intensity="low">RISHABH RANJAN</GlitchText>
           </motion.h1>
         </motion.div>
         

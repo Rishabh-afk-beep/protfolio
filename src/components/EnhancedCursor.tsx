@@ -20,12 +20,13 @@ export default function EnhancedCursor() {
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
   
-  const springConfig = { damping: 20, stiffness: 300 };
+  // Smoother spring config to reduce fluctuation
+  const springConfig = { damping: 35, stiffness: 250, mass: 0.5 };
   const cursorXSpring = useSpring(cursorX, springConfig);
   const cursorYSpring = useSpring(cursorY, springConfig);
 
-  // Trail for smooth following
-  const trailSpringConfig = { damping: 30, stiffness: 200 };
+  // Trail for smooth following - higher damping for stability
+  const trailSpringConfig = { damping: 45, stiffness: 150, mass: 0.8 };
   const trailX = useSpring(cursorX, trailSpringConfig);
   const trailY = useSpring(cursorY, trailSpringConfig);
 
@@ -45,8 +46,8 @@ export default function EnhancedCursor() {
     cursorX.set(e.clientX);
     cursorY.set(e.clientY);
     
-    // Create particles on fast movement
-    if (Math.random() > 0.85) {
+    // Create particles less frequently to reduce visual noise
+    if (Math.random() > 0.95) {
       createParticle(e.clientX, e.clientY);
     }
   }, [cursorX, cursorY, createParticle]);
@@ -178,7 +179,7 @@ export default function EnhancedCursor() {
           animate={{
             scale: getCursorSize(),
           }}
-          transition={{ duration: 0.15, ease: 'easeOut' }}
+          transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
         >
           {/* Outer ring */}
           <motion.div

@@ -117,7 +117,7 @@ export default function BrutalistContact() {
 
                 <TiltCard tiltAmount={8} className="border-l-4 border-foreground pl-6 py-4">
                   <div className="font-mono text-xs text-muted-foreground mb-2">LOCATION</div>
-                  <div className="text-lg">INDIA</div>
+                  <div className="text-lg">BENGALURU, INDIA</div>
                   <div className="font-mono text-sm text-muted-foreground flex items-center gap-2">
                     <motion.span 
                       className="w-2 h-2 bg-electric rounded-full"

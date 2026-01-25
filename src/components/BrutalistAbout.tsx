@@ -61,7 +61,7 @@ export default function BrutalistAbout() {
             <div className="space-y-6">
               <p className="text-2xl md:text-3xl font-light leading-relaxed">
                 I'm a <span className="font-bold gradient-text">full stack developer</span> based in{' '}
-                <span className="electric-bg px-2 border-dance inline-block">India</span>.
+                <span className="electric-bg px-2 border-dance inline-block">Bengaluru</span>.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 I build web applications with React on the frontend and Python/FastAPI on the backend. I love creating fast, accessible, and visually striking digital experiences.

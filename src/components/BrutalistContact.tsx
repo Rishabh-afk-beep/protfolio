@@ -1,5 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
+import { Download } from 'lucide-react';
 import MagneticButton from './MagneticButton';
 import TiltCard from './TiltCard';
 import ScrollReveal from './ScrollReveal';
@@ -105,6 +106,22 @@ export default function BrutalistContact() {
                     />
                     IST (UTC+5:30)
                   </div>
+                </TiltCard>
+
+                <TiltCard tiltAmount={8} className="border-l-4 border-hot-red pl-6 py-4">
+                  <div className="font-mono text-xs text-muted-foreground mb-2">RESUME</div>
+                  <MagneticButton
+                    data-cursor="DOWNLOAD"
+                  >
+                    <a 
+                      href="/resume.pdf" 
+                      download="Rishabh_Ranjan_Dangi_Resume.pdf"
+                      className="flex items-center gap-3 text-lg font-bold hover:text-electric transition-colors"
+                    >
+                      <Download className="w-5 h-5" />
+                      <TextScramble scrambleOnHover revealOnScroll={false}>DOWNLOAD CV</TextScramble>
+                    </a>
+                  </MagneticButton>
                 </TiltCard>
               </div>
             </div>

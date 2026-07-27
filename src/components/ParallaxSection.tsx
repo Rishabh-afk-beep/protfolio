@@ -21,21 +21,12 @@ export default function ParallaxSection({
     offset: ['start end', 'end start'],
   });
 
-  const getTransform = () => {
-    const range = 100 * speed;
-    switch (direction) {
-      case 'up':
-        return useTransform(scrollYProgress, [0, 1], [range, -range]);
-      case 'down':
-        return useTransform(scrollYProgress, [0, 1], [-range, range]);
-      case 'left':
-        return useTransform(scrollYProgress, [0, 1], [range, -range]);
-      case 'right':
-        return useTransform(scrollYProgress, [0, 1], [-range, range]);
-    }
-  };
-
-  const transform = getTransform();
+  const range = 100 * speed;
+  const transform = useTransform(
+    scrollYProgress,
+    [0, 1],
+    direction === 'down' || direction === 'right' ? [-range, range] : [range, -range]
+  );
   const isHorizontal = direction === 'left' || direction === 'right';
 
   return (

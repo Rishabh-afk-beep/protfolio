@@ -18,7 +18,9 @@ interface WindowWithWebKitAudio extends Window {
 
 const createAudioContext = () => {
   const w = window as WindowWithWebKitAudio;
-  return new (w.AudioContext || w.webkitAudioContext)();
+  const Ctx = w.AudioContext || w.webkitAudioContext;
+  if (!Ctx) throw new Error('Web Audio API is not supported');
+  return new Ctx();
 };
 
 export function SoundProvider({ children }: { children: ReactNode }) {

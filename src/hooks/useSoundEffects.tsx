@@ -12,8 +12,13 @@ interface SoundContextType {
 const SoundContext = createContext<SoundContextType | null>(null);
 
 // Create subtle synthesized sounds using Web Audio API
+interface WindowWithWebKitAudio extends Window {
+  webkitAudioContext?: typeof AudioContext;
+}
+
 const createAudioContext = () => {
-  return new (window.AudioContext || window.webkitAudioContext)();
+  const w = window as WindowWithWebKitAudio;
+  return new (w.AudioContext || w.webkitAudioContext)();
 };
 
 export function SoundProvider({ children }: { children: ReactNode }) {

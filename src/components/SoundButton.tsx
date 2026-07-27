@@ -1,13 +1,10 @@
 import { ReactNode, forwardRef } from 'react';
 import { useSoundEffects } from '@/hooks/useSoundEffects';
 
-interface SoundButtonProps {
+interface SoundButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  onClick?: () => void;
-  className?: string;
   onHoverSound?: boolean;
   onClickSound?: boolean;
-  [key: string]: any;
 }
 
 const SoundButton = forwardRef<HTMLButtonElement, SoundButtonProps>(

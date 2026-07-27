@@ -13,7 +13,7 @@ const SoundContext = createContext<SoundContextType | null>(null);
 
 // Create subtle synthesized sounds using Web Audio API
 const createAudioContext = () => {
-  return new (window.AudioContext || (window as any).webkitAudioContext)();
+  return new (window.AudioContext || window.webkitAudioContext)();
 };
 
 export function SoundProvider({ children }: { children: ReactNode }) {

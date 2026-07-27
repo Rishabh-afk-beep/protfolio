@@ -15,9 +15,9 @@ const SoundButton = forwardRef<HTMLButtonElement, SoundButtonProps>(
       if (onHoverSound) playHover();
     };
 
-    const handleClick = () => {
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
       if (onClickSound) playClick();
-      onClick?.();
+      onClick?.(event);
     };
 
     return (

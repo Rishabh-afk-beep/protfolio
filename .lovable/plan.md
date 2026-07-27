@@ -1,33 +1,28 @@
+# Connect Project to GitHub
+
 ## Goal
-Connect this Lovable project to GitHub and create a new repository so the codebase syncs automatically.
+Sync this Lovable project to a new GitHub repository using Lovable’s built-in Git sync.
 
-## Current state
-- Project: Vite + React + TypeScript + shadcn/ui (`vite_react_shadcn_ts`)
-- No GitHub connection is currently active
-- Build script is available (`vite build`)
+## Steps
 
-## Plan
+1. Open the GitHub connect flow
+   - In the Lovable editor, click the **Plus (+)** menu in the chat input (bottom-left).
+   - Select **GitHub → Connect project**.
 
-### 1. Prepare the codebase (optional but recommended)
-- Run a quick build/lint check to make sure the project compiles cleanly before it is pushed to GitHub.
-- This avoids pushing broken code into the new repository.
+2. Authorize GitHub
+   - Approve the Lovable GitHub App when prompted.
 
-### 2. Open the GitHub connection flow in Lovable
-- In the Lovable editor, click the **Plus (+)** menu in the chat input (bottom-left).
-- Select **GitHub** → **Connect project**.
+3. Create the repository
+   - Choose the GitHub account or organization.
+   - Enter a repository name.
+   - Select public or private visibility.
+   - Click **Create Repository**.
 
-### 3. Authorize and create the repository
-- Authorize the Lovable GitHub App when prompted.
-- Choose the GitHub account or organization where the repository should live.
-- Pick a repository name (default is usually the project name).
-- Choose public or private visibility.
-- Click **Create Repository**.
-
-### 4. Verify the sync
-- Confirm the repository appears on GitHub with the current project files.
-- Note that future changes made in Lovable will push to this repository automatically (two-way sync).
+4. Verify sync
+   - Confirm the repository appears in GitHub and contains the latest project files.
+   - Future edits in Lovable will push to GitHub automatically.
 
 ## Notes
-- This uses Lovable's built-in Git sync, not the GitHub App connector for runtime API calls.
-- Database data is not included in the code sync; it can be exported separately from Cloud → Advanced settings → Export data if needed later.
-- Only one GitHub account can be connected to a Lovable account at a time.
+- This uses Lovable’s two-way Git sync, not the GitHub API connector.
+- No code changes are required in the project; the action is performed through the Lovable editor UI.
+- If you later want to edit code outside Lovable, clone the repo and push changes — they will sync back into the project.

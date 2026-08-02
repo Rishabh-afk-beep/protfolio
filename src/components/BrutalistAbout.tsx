@@ -22,9 +22,9 @@ const experiences = [
   },
   {
     period: '2025',
-    role: '2ND PLACE OVERALL (200+ TEAMS)',
+    role: '2ND PLACE OVERALL',
     company: 'SRUJANA HACKATHON 2025',
-    description: 'Crushed the competition against 200+ elite engineering teams. Architected and deployed a production-ready solution under extreme time constraints.',
+    description: 'Crushed the competition against elite engineering teams. Architected and deployed a production-ready solution under extreme time constraints.',
   },
   {
     period: '2025',

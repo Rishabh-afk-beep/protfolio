@@ -156,8 +156,9 @@ export default function BrutalistContact() {
               >
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div className={`transition-transform duration-300 ${focusedField === 'name' ? 'scale-[1.02]' : ''}`}>
-                    <label className="font-mono text-xs text-muted-foreground block mb-2">NAME *</label>
+                    <label htmlFor="name" className="font-mono text-xs text-muted-foreground block mb-2">NAME *</label>
                     <Input
+                      id="name"
                       name="name"
                       required
                       placeholder="JOHN DOE"
@@ -167,8 +168,9 @@ export default function BrutalistContact() {
                     />
                   </div>
                   <div className={`transition-transform duration-300 ${focusedField === 'email' ? 'scale-[1.02]' : ''}`}>
-                    <label className="font-mono text-xs text-muted-foreground block mb-2">EMAIL *</label>
+                    <label htmlFor="email" className="font-mono text-xs text-muted-foreground block mb-2">EMAIL *</label>
                     <Input
+                      id="email"
                       name="email"
                       type="email"
                       required
@@ -181,8 +183,9 @@ export default function BrutalistContact() {
                 </div>
 
                 <div className={`transition-transform duration-300 ${focusedField === 'project' ? 'scale-[1.02]' : ''}`}>
-                  <label className="font-mono text-xs text-muted-foreground block mb-2">PROJECT TYPE</label>
+                  <label htmlFor="project_type" className="font-mono text-xs text-muted-foreground block mb-2">PROJECT TYPE</label>
                   <Input
+                    id="project_type"
                     name="project_type"
                     placeholder="WEB APP / WEBSITE / OTHER"
                     onFocus={() => setFocusedField('project')}
@@ -192,8 +195,9 @@ export default function BrutalistContact() {
                 </div>
 
                 <div className={`transition-transform duration-300 ${focusedField === 'message' ? 'scale-[1.02]' : ''}`}>
-                  <label className="font-mono text-xs text-muted-foreground block mb-2">MESSAGE *</label>
+                  <label htmlFor="message" className="font-mono text-xs text-muted-foreground block mb-2">MESSAGE *</label>
                   <Textarea
+                    id="message"
                     name="message"
                     required
                     rows={6}

@@ -208,10 +208,16 @@ export default function PhysicsEngine() {
   if (!isActive) return null;
 
   return (
-    <div className="fixed inset-0 z-[9990] pointer-events-none flex items-center justify-center">
-      <div className="text-hot-red text-9xl font-display font-black tracking-tighter opacity-20 glitch pointer-events-none" data-text="SYSTEM FAILURE">
+    <div className="fixed inset-0 z-[9990] pointer-events-none flex flex-col items-center justify-center gap-8">
+      <div className="text-hot-red text-6xl md:text-9xl font-display font-black tracking-tighter opacity-20 glitch pointer-events-none" data-text="SYSTEM FAILURE">
         SYSTEM FAILURE
       </div>
+      <button 
+        onClick={() => window.location.reload()}
+        className="pointer-events-auto border-4 border-hot-red text-hot-red px-8 py-4 font-mono font-bold hover:bg-hot-red hover:text-background transition-colors z-[10000]"
+      >
+        REBOOT SYSTEM
+      </button>
     </div>
   );
 }

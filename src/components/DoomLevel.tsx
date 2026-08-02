@@ -200,6 +200,20 @@ export default function DoomLevel() {
 
   return (
     <div className="fixed inset-0 z-[100000] bg-black">
+      {/* Exit Button */}
+      <button 
+        className="absolute top-6 right-6 z-[100002] electric-bg text-raw-black font-mono text-sm px-6 py-2 font-bold border-2 border-foreground hover-brutal"
+        onClick={(e) => {
+          e.stopPropagation();
+          setIsActive(false);
+          if (document.pointerLockElement) {
+            document.exitPointerLock();
+          }
+        }}
+      >
+        EXIT SIMULATION
+      </button>
+
       {!isLocked && (
         <div className="absolute inset-0 z-[100001] flex flex-col items-center justify-center bg-black/80 text-white pointer-events-none px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-black mb-4 text-hot-red uppercase tracking-widest glitch" data-text="TERMINAL_DOOM">

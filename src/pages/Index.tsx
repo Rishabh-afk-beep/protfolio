@@ -18,7 +18,23 @@ import PhysicsEngine from '@/components/PhysicsEngine';
 import SystemOverload from '@/components/SystemOverload';
 import DoomLevel from '@/components/DoomLevel';
 
+const InitScreen = ({ onStart }: { onStart: () => void }) => {
+  return (
+    <motion.div 
+      className="fixed inset-0 z-[200] w-screen h-[100dvh] flex flex-col items-center justify-center bg-background cursor-pointer noise"
+      onClick={onStart}
+      exit={{ opacity: 0, transition: { duration: 0.5 } }}
+    >
+      <div className="font-mono text-xl md:text-2xl font-bold tracking-widest text-electric animate-pulse flex flex-col items-center gap-4">
+        <span>[ CLICK TO INITIALIZE ]</span>
+        <span className="text-xs text-muted-foreground font-normal tracking-normal">SYSTEM AUDIO REQUIRED</span>
+      </div>
+    </motion.div>
+  );
+};
+
 const Index = () => {
+  const [started, setStarted] = useState(false);
   const [loading, setLoading] = useState(true);
   const [matrixActive, setMatrixActive] = useState(false);
 
@@ -30,9 +46,9 @@ const Index = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Lock scrolling while preloader is active, reset scroll when done
+  // Lock scrolling while preloader is active or hasn't started, reset scroll when done
   useEffect(() => {
-    if (loading) {
+    if (!started || loading) {
       document.body.style.overflow = 'hidden';
     } else {
       // Force scroll to top right when loading finishes
@@ -46,7 +62,7 @@ const Index = () => {
     return () => {
       document.body.style.overflow = '';
     };
-  }, [loading]);
+  }, [loading, started]);
 
   const handleMatrix = useCallback(() => {
     setMatrixActive(true);
@@ -61,9 +77,13 @@ const Index = () => {
   return (
     <SoundProvider>
       <div className="relative min-h-screen overflow-x-hidden bg-background">
+        <AnimatePresence mode="wait">
+          {!started && <InitScreen key="init" onStart={() => setStarted(true)} />}
+        </AnimatePresence>
+
         {/* Preloader */}
         <AnimatePresence mode="wait">
-          {loading && <PreLoader key="preloader" onComplete={() => setLoading(false)} />}
+          {started && loading && <PreLoader key="preloader" onComplete={() => setLoading(false)} />}
         </AnimatePresence>
 
         {/* Global overlays */}
@@ -75,7 +95,7 @@ const Index = () => {
         <PageGlitch />
         <EnhancedCursor />
         
-        {!loading && (
+        {!loading && started && (
           <>
             <ThemeToggle />
             <SoundToggle />
@@ -85,7 +105,7 @@ const Index = () => {
 
         {/* Main Content — only mounts after preloader finishes */}
         <AnimatePresence>
-          {!loading && (
+          {!loading && started && (
             <motion.main
               className="pt-20"
               initial={{ opacity: 0 }}

@@ -5,26 +5,38 @@ import TextScramble from './TextScramble';
 import { FloatingElement } from './ParallaxSection';
 
 const skills = [
-  { name: 'REACT', level: 90, color: 'electric' },
-  { name: 'PYTHON', level: 85, color: 'cold-blue' },
-  { name: 'FASTAPI', level: 80, color: 'hot-red' },
-  { name: 'TYPESCRIPT', level: 75, color: 'electric' },
-  { name: 'JAVASCRIPT', level: 85, color: 'cold-blue' },
-  { name: 'TAILWIND CSS', level: 90, color: 'hot-red' },
+  { name: 'JAVA', level: 90, color: 'electric' },
+  { name: 'REACT', level: 85, color: 'cold-blue' },
+  { name: 'FASTAPI', level: 85, color: 'hot-red' },
+  { name: 'LANGGRAPH', level: 80, color: 'electric' },
+  { name: 'RAG PIPELINES', level: 85, color: 'cold-blue' },
+  { name: 'JAVASCRIPT', level: 85, color: 'hot-red' },
 ];
 
 const experiences = [
   {
-    period: '2023 — NOW',
-    role: 'FULL STACK DEVELOPER',
-    company: 'FREELANCE',
-    description: 'Building web applications and APIs for clients.',
+    period: '2023 — 2027',
+    role: 'B.E. IN INFO SCIENCE',
+    company: 'ACHARYA INSTITUTE OF TECHNOLOGY',
+    description: 'Mastering core Computer Science: DSA, Algorithms, DBMS, and scalable software engineering principles.',
   },
   {
-    period: '2022 — 2023',
-    role: 'LEARNING & BUILDING',
-    company: 'SELF-TAUGHT',
-    description: 'Mastering React, Python, and full-stack development.',
+    period: '2025',
+    role: '2ND PLACE OVERALL (200+ TEAMS)',
+    company: 'SRUJANA HACKATHON 2025',
+    description: 'Crushed the competition against 200+ elite engineering teams. Architected and deployed a production-ready solution under extreme time constraints.',
+  },
+  {
+    period: '2025',
+    role: '3RD PLACE FINISH',
+    company: 'IMPACTX 2025 (RNSIT)',
+    description: 'Engineered a high-impact, technical solution that dominated the judging rounds. Proven ability to execute complex ideas rapidly.',
+  },
+  {
+    period: '2024',
+    role: 'CERTIFIED DEVELOPER',
+    company: 'IBM CLOUD COMPUTING',
+    description: 'Mastered cloud infrastructure, deployment pipelines, and scalable system architecture via Coursera.',
   },
 ];
 
@@ -60,14 +72,14 @@ export default function BrutalistAbout() {
           <div className="space-y-8">
             <div className="space-y-6">
               <p className="text-2xl md:text-3xl font-light leading-relaxed">
-                I'm a <span className="font-bold gradient-text">full stack developer</span> based in{' '}
+                I'm an <span className="font-bold gradient-text">Information Science</span> student based in{' '}
                 <span className="electric-bg px-2 border-dance inline-block">Bengaluru</span>.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                I build web applications with React on the frontend and Python/FastAPI on the backend. I love creating fast, accessible, and visually striking digital experiences.
+                I build scalable web and AI-powered applications, with hands-on experience designing, developing, and deploying end-to-end solutions that solve real-world problems.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                When I'm not coding, you'll find me exploring new technologies, learning new frameworks, or experimenting with creative projects.
+                I'm passionate about engineering agentic RAG pipelines, working with modern frontend technologies, and building robust backend services.
               </p>
             </div>
 
@@ -79,7 +91,7 @@ export default function BrutalistAbout() {
                     className="text-display text-5xl md:text-6xl text-electric"
                     whileHover={{ scale: 1.1 }}
                   >
-                    <TextScramble scrambleOnHover>1+</TextScramble>
+                    <TextScramble scrambleOnHover>0-1</TextScramble>
                   </motion.div>
                   <div className="font-mono text-xs text-muted-foreground mt-2 group-hover:text-electric transition-colors">YEARS EXP</div>
                 </div>
@@ -90,7 +102,7 @@ export default function BrutalistAbout() {
                     className="text-display text-5xl md:text-6xl"
                     whileHover={{ scale: 1.1 }}
                   >
-                    <TextScramble scrambleOnHover>10+</TextScramble>
+                    <TextScramble scrambleOnHover>5+</TextScramble>
                   </motion.div>
                   <div className="font-mono text-xs text-muted-foreground mt-2 group-hover:text-electric transition-colors">PROJECTS</div>
                 </div>
@@ -98,12 +110,12 @@ export default function BrutalistAbout() {
               <StaggerItem>
                 <div className="group">
                   <motion.div 
-                    className="text-display text-5xl md:text-6xl"
+                    className="text-display text-5xl md:text-6xl text-electric"
                     whileHover={{ scale: 1.1, rotate: 15 }}
                   >
-                    ∞
+                    2
                   </motion.div>
-                  <div className="font-mono text-xs text-muted-foreground mt-2 group-hover:text-electric transition-colors">COFFEE</div>
+                  <div className="font-mono text-xs text-muted-foreground mt-2 group-hover:text-electric transition-colors">HACKATHON WINS</div>
                 </div>
               </StaggerItem>
             </StaggerContainer>
@@ -155,7 +167,7 @@ export default function BrutalistAbout() {
           {/* Experience */}
           <ScrollReveal variant="fade" delay={0.4}>
             <div>
-              <h3 className="font-mono text-sm text-muted-foreground mb-6">EXPERIENCE</h3>
+              <h3 className="font-mono text-sm text-muted-foreground mb-6">EDUCATION & ACHIEVEMENTS</h3>
               <div className="space-y-6">
                 {experiences.map((exp, index) => (
                   <motion.div
@@ -177,6 +189,7 @@ export default function BrutalistAbout() {
                       <TextScramble scrambleOnHover revealOnScroll={false}>{exp.role}</TextScramble>
                     </div>
                     <div className="text-muted-foreground">{exp.company}</div>
+                    <div className="font-mono text-xs text-muted-foreground mt-1">{exp.description}</div>
                   </motion.div>
                 ))}
               </div>
@@ -192,14 +205,14 @@ export default function BrutalistAbout() {
           <div className="flex whitespace-nowrap">
           <div className="marquee flex">
               <span className="text-display text-4xl md:text-6xl flex items-center gap-8">
-                {['REACT', '✦', 'PYTHON', '✦', 'FASTAPI', '✦', 'TYPESCRIPT', '✦', 'TAILWIND', '✦', 'JAVASCRIPT', '✦', 'REST APIs', '✦', 'GIT', '✦'].map((item, i) => (
+                {['PYTHON', '✦', 'JAVASCRIPT', '✦', 'SQL', '✦', 'JAVA', '✦', 'C++', '✦', 'RAG PIPELINES', '✦', 'LANGGRAPH', '✦', 'CHROMADB', '✦', 'OLLAMA', '✦', 'FASTAPI', '✦', 'REST APIS', '✦', 'REACT', '✦', 'GIT', '✦', 'GITHUB', '✦', 'VS CODE', '✦', 'VERCEL', '✦', 'RENDER', '✦', 'DSA', '✦', 'DBMS', '✦', 'COMPUTER NETWORKS', '✦'].map((item, i) => (
                   <span key={i} className={item === '✦' ? 'text-electric' : 'hover:text-electric transition-colors'}>
                     {item}
                   </span>
                 ))}
               </span>
               <span className="text-display text-4xl md:text-6xl flex items-center gap-8 ml-8">
-                {['REACT', '✦', 'PYTHON', '✦', 'FASTAPI', '✦', 'TYPESCRIPT', '✦', 'TAILWIND', '✦', 'JAVASCRIPT', '✦', 'REST APIs', '✦', 'GIT', '✦'].map((item, i) => (
+                {['PYTHON', '✦', 'JAVASCRIPT', '✦', 'SQL', '✦', 'JAVA', '✦', 'C++', '✦', 'RAG PIPELINES', '✦', 'LANGGRAPH', '✦', 'CHROMADB', '✦', 'OLLAMA', '✦', 'FASTAPI', '✦', 'REST APIS', '✦', 'REACT', '✦', 'GIT', '✦', 'GITHUB', '✦', 'VS CODE', '✦', 'VERCEL', '✦', 'RENDER', '✦', 'DSA', '✦', 'DBMS', '✦', 'COMPUTER NETWORKS', '✦'].map((item, i) => (
                   <span key={i} className={item === '✦' ? 'text-electric' : 'hover:text-electric transition-colors'}>
                     {item}
                   </span>

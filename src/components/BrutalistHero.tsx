@@ -5,9 +5,12 @@ import MagneticButton from './MagneticButton';
 import GlitchText from './GlitchText';
 import TextScramble from './TextScramble';
 import { FloatingElement } from './ParallaxSection';
+import ThreeBackground from './ThreeBackground';
+import { useSoundEffects } from '@/hooks/useSoundEffects';
 
 export default function BrutalistHero() {
   const [time, setTime] = useState(new Date());
+  const { getAnalyserData } = useSoundEffects();
 
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
@@ -20,6 +23,9 @@ export default function BrutalistHero() {
 
   return (
     <section className="relative min-h-screen flex flex-col justify-between p-6 md:p-12 overflow-hidden noise">
+      {/* 3D Interactive Background */}
+      <ThreeBackground getAnalyserData={getAnalyserData} />
+      
       {/* Animated background grid */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -53,7 +59,7 @@ export default function BrutalistHero() {
       >
         <div className="font-mono text-sm text-muted-foreground">
           <div>LOCATION: <span className="text-flicker">BENGALURU, INDIA</span></div>
-          <div>STATUS: <span className="text-electric pulse-glow inline-block px-1">AVAILABLE FOR HIRE</span></div>
+          <div>STATUS: <span className="text-electric pulse-glow inline-block px-1">OPEN TO OPPORTUNITIES</span></div>
         </div>
         <div className="font-mono text-sm text-right text-muted-foreground">
           <div>{time.toLocaleDateString('en-US', { weekday: 'long' }).toUpperCase()}</div>
@@ -103,7 +109,7 @@ export default function BrutalistHero() {
             transition={{ delay: 1 }}
             className="text-2xl md:text-4xl font-mono text-muted-foreground rotate-text hidden md:block float"
           >
-            ©2024
+            ©{new Date().getFullYear()}
           </motion.span>
         </div>
 
@@ -126,18 +132,18 @@ export default function BrutalistHero() {
               <TextScramble revealOnScroll={false} scrambleOnHover>FULL STACK DEV</TextScramble>
             </span>
             <span className="border-2 border-foreground px-3 py-1 hover:bg-foreground hover:text-background transition-colors">
-              <TextScramble revealOnScroll={false} scrambleOnHover>REACT</TextScramble>
+              <TextScramble revealOnScroll={false} scrambleOnHover>AI / RAG</TextScramble>
             </span>
             <span className="border-2 border-foreground px-3 py-1 hover:bg-foreground hover:text-background transition-colors">
               <TextScramble revealOnScroll={false} scrambleOnHover>PYTHON</TextScramble>
             </span>
             <span className="border-2 border-foreground px-3 py-1 hover:bg-foreground hover:text-background transition-colors">
-              <TextScramble revealOnScroll={false} scrambleOnHover>FASTAPI</TextScramble>
+              <TextScramble revealOnScroll={false} scrambleOnHover>REACT</TextScramble>
             </span>
           </div>
           
           <p className="font-mono text-muted-foreground max-w-xs text-sm">
-            BUILDING DIGITAL EXPERIENCES THAT <span className="text-foreground font-bold gradient-text">BREAK</span> THE <span className="text-foreground font-bold gradient-text">RULES</span>
+            ENGINEERING <span className="text-foreground font-bold gradient-text">AI-POWERED</span> SOLUTIONS THAT SOLVE <span className="text-foreground font-bold gradient-text">REAL-WORLD</span> PROBLEMS
           </p>
         </motion.div>
       </div>

@@ -7,6 +7,9 @@ interface SoundContextType {
   playClick: () => void;
   playSuccess: () => void;
   playWhoosh: () => void;
+  playLoadingBeep: () => void;
+  playGlitch: () => void;
+  getAnalyserData: () => Uint8Array | null;
 }
 
 const SoundContext = createContext<SoundContextType | null>(null);
@@ -27,12 +30,28 @@ const createAudioContext = () => {
 export function SoundProvider({ children }: { children: ReactNode }) {
   const [isMuted, setIsMuted] = useState(false);
   const audioContextRef = useRef<AudioContext | null>(null);
+  const masterGainRef = useRef<GainNode | null>(null);
+  const analyserRef = useRef<AnalyserNode | null>(null);
 
   const getAudioContext = useCallback(() => {
     if (!audioContextRef.current) {
-      audioContextRef.current = createAudioContext();
+      const ctx = createAudioContext();
+      audioContextRef.current = ctx;
+      
+      const masterGain = ctx.createGain();
+      masterGain.connect(ctx.destination);
+      masterGainRef.current = masterGain;
+
+      const analyser = ctx.createAnalyser();
+      analyser.fftSize = 256;
+      masterGain.connect(analyser);
+      analyserRef.current = analyser;
     }
-    return audioContextRef.current;
+    return { 
+      ctx: audioContextRef.current, 
+      masterGain: masterGainRef.current,
+      analyser: analyserRef.current
+    };
   }, []);
 
   const playTone = useCallback((
@@ -44,12 +63,14 @@ export function SoundProvider({ children }: { children: ReactNode }) {
     if (isMuted) return;
 
     try {
-      const ctx = getAudioContext();
+      const { ctx, masterGain } = getAudioContext();
+      if (!masterGain) return;
+      
       const oscillator = ctx.createOscillator();
       const gainNode = ctx.createGain();
 
       oscillator.connect(gainNode);
-      gainNode.connect(ctx.destination);
+      gainNode.connect(masterGain);
 
       oscillator.frequency.setValueAtTime(frequency, ctx.currentTime);
       oscillator.type = type;
@@ -81,11 +102,19 @@ export function SoundProvider({ children }: { children: ReactNode }) {
     setTimeout(() => playTone(784, 0.2, 'sine', 0.08), 200);
   }, [playTone]);
 
+  const playLoadingBeep = useCallback(() => {
+    // Random high-pitched blip for processing effect
+    const freq = 1200 + Math.random() * 800;
+    playTone(freq, 0.03, 'square', 0.02);
+  }, [playTone]);
+
   const playWhoosh = useCallback(() => {
     if (isMuted) return;
 
     try {
-      const ctx = getAudioContext();
+      const { ctx, masterGain } = getAudioContext();
+      if (!masterGain) return;
+      
       const bufferSize = ctx.sampleRate * 0.15;
       const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
       const data = buffer.getChannelData(0);
@@ -105,7 +134,7 @@ export function SoundProvider({ children }: { children: ReactNode }) {
 
       source.connect(filter);
       filter.connect(gainNode);
-      gainNode.connect(ctx.destination);
+      gainNode.connect(masterGain);
 
       gainNode.gain.setValueAtTime(0.05, ctx.currentTime);
       gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
@@ -116,12 +145,61 @@ export function SoundProvider({ children }: { children: ReactNode }) {
     }
   }, [isMuted, getAudioContext]);
 
+  const playGlitch = useCallback(() => {
+    if (isMuted) return;
+    try {
+      const { ctx, masterGain } = getAudioContext();
+      if (!masterGain) return;
+      
+      const bufferSize = ctx.sampleRate * 2; // 2 seconds of noise
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+
+      for (let i = 0; i < bufferSize; i++) {
+        // Harsh digital noise
+        data[i] = (Math.random() * 2 - 1) * (i % 10 < 5 ? 1 : -1);
+      }
+
+      const source = ctx.createBufferSource();
+      const gainNode = ctx.createGain();
+      const filter = ctx.createBiquadFilter();
+
+      source.buffer = buffer;
+      
+      // Sweep the filter to sound like a digital crash
+      filter.type = 'bandpass';
+      filter.frequency.setValueAtTime(100, ctx.currentTime);
+      filter.frequency.exponentialRampToValueAtTime(8000, ctx.currentTime + 1.5);
+      filter.Q.value = 10;
+
+      source.connect(filter);
+      filter.connect(gainNode);
+      gainNode.connect(masterGain);
+
+      gainNode.gain.setValueAtTime(0, ctx.currentTime);
+      gainNode.gain.linearRampToValueAtTime(0.5, ctx.currentTime + 0.1);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 2);
+
+      source.start(ctx.currentTime);
+      source.stop(ctx.currentTime + 2);
+    } catch (e) {
+      console.error("Audio error", e);
+    }
+  }, [getAudioContext, isMuted]);
+
   const toggleMute = useCallback(() => {
     setIsMuted(prev => !prev);
   }, []);
 
+  const getAnalyserData = useCallback(() => {
+    if (!analyserRef.current) return null;
+    const dataArray = new Uint8Array(analyserRef.current.frequencyBinCount);
+    analyserRef.current.getByteFrequencyData(dataArray);
+    return dataArray;
+  }, []);
+
   return (
-    <SoundContext.Provider value={{ isMuted, toggleMute, playHover, playClick, playSuccess, playWhoosh }}>
+    <SoundContext.Provider value={{ isMuted, toggleMute, playHover, playClick, playSuccess, playWhoosh, playLoadingBeep, playGlitch, getAnalyserData }}>
       {children}
     </SoundContext.Provider>
   );

@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState, ReactNode } from 'react';
 import { motion } from 'framer-motion';
+import { useSoundEffects } from '@/hooks/useSoundEffects';
 
 interface MagneticButtonProps {
   children: ReactNode;
@@ -24,6 +25,7 @@ export default function MagneticButton({
 }: MagneticButtonProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const { playHover, playClick } = useSoundEffects();
 
   useEffect(() => {
     const element = ref.current;
@@ -46,6 +48,7 @@ export default function MagneticButton({
     };
 
     const handleMouseEnter = () => {
+      playHover();
       onMouseEnter?.();
     };
 
@@ -68,7 +71,10 @@ export default function MagneticButton({
       transition={{ type: 'spring', stiffness: 400, damping: 25 }}
       className={className}
       data-cursor={dataCursor}
-      onClick={onClick}
+      onClick={(e) => {
+        playClick();
+        onClick?.();
+      }}
     >
       {children}
     </motion.div>
@@ -76,7 +82,23 @@ export default function MagneticButton({
 
   if (href) {
     return (
-      <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer">
+      <a
+        href={href}
+        target={href.startsWith('http') ? '_blank' : undefined}
+        rel="noopener noreferrer"
+        onClick={(e) => {
+          // Trigger CRT glitch for internal navigation
+          if (href.startsWith('#')) {
+            e.preventDefault();
+            window.dispatchEvent(new CustomEvent('trigger-glitch'));
+            // Scroll to section after a short delay for the glitch effect
+            setTimeout(() => {
+              const el = document.querySelector(href);
+              el?.scrollIntoView({ behavior: 'smooth' });
+            }, 150);
+          }
+        }}
+      >
         {content}
       </a>
     );

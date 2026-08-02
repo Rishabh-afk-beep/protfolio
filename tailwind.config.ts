@@ -5,6 +5,12 @@ export default {
   darkMode: ["class"],
   content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   prefix: "",
+  safelist: [
+    "bg-electric", "bg-hot-red", "bg-cold-blue",
+    "border-electric", "border-hot-red", "border-cold-blue",
+    "text-electric", "text-hot-red", "text-cold-blue",
+    "hover:bg-electric", "hover:bg-hot-red", "hover:bg-cold-blue",
+  ],
   theme: {
     container: {
       center: true,

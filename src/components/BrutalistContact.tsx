@@ -22,7 +22,7 @@ export default function BrutalistContact() {
     setIsSubmitting(true);
     
     const formData = new FormData(e.target as HTMLFormElement);
-    formData.append('access_key', 'a9ea8e8a-5b2f-4b4d-a4ed-c50b279d7186');
+    formData.append('access_key', import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || 'd022fd2b-3216-415a-8263-24ee5658717e');
     
     try {
       const response = await fetch('https://api.web3forms.com/submit', {

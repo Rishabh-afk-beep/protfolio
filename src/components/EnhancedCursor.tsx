@@ -113,6 +113,69 @@ export default function EnhancedCursor() {
     return () => clearInterval(cleanup);
   }, []);
 
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const prevMouse = useRef({ x: 0, y: 0 });
+
+  // Canvas Smear Logic
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    let animationFrameId: number;
+    const render = () => {
+      // Fade out effect
+      ctx.fillStyle = 'rgba(10, 10, 10, 0.1)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Draw thick glitchy line
+      const currentX = cursorX.get();
+      const currentY = cursorY.get();
+      
+      const dx = currentX - prevMouse.current.x;
+      const dy = currentY - prevMouse.current.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance > 2) {
+        ctx.beginPath();
+        ctx.moveTo(prevMouse.current.x, prevMouse.current.y);
+        ctx.lineTo(currentX, currentY);
+        ctx.strokeStyle = `hsl(52, 100%, 50%)`;
+        ctx.lineWidth = Math.min(distance * 0.5, 20);
+        ctx.lineCap = 'square';
+        ctx.stroke();
+
+        // Random glitch blocks
+        if (Math.random() > 0.7) {
+          ctx.fillStyle = 'hsl(220, 100%, 60%)';
+          ctx.fillRect(
+            currentX + (Math.random() - 0.5) * 40,
+            currentY + (Math.random() - 0.5) * 40,
+            Math.random() * 10 + 2,
+            Math.random() * 10 + 2
+          );
+        }
+      }
+
+      prevMouse.current = { x: currentX, y: currentY };
+      animationFrameId = requestAnimationFrame(render);
+    };
+    render();
+
+    return () => {
+      window.removeEventListener('resize', resize);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [cursorX, cursorY]);
+
   const getCursorSize = () => {
     if (isClicking) return 0.6;
     if (isHovering) return 3;
@@ -121,12 +184,18 @@ export default function EnhancedCursor() {
 
   return (
     <>
+      {/* Canvas Smear Trail */}
+      <canvas
+        ref={canvasRef}
+        className="fixed top-0 left-0 w-full h-full pointer-events-none z-[100005] mix-blend-screen opacity-50"
+      />
+
       {/* Particles */}
       <AnimatePresence>
         {particles.map((particle) => (
           <motion.div
             key={particle.id}
-            className="fixed top-0 left-0 pointer-events-none z-[9997] rounded-full mix-blend-screen"
+            className="fixed top-0 left-0 pointer-events-none z-[100007] rounded-full mix-blend-screen"
             style={{
               x: particle.x - particle.size / 2,
               y: particle.y - particle.size / 2,
@@ -144,7 +213,7 @@ export default function EnhancedCursor() {
 
       {/* Trail ring */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9998] mix-blend-difference"
+        className="fixed top-0 left-0 pointer-events-none z-[100008] mix-blend-difference"
         style={{
           x: trailX,
           y: trailY,
@@ -168,7 +237,7 @@ export default function EnhancedCursor() {
 
       {/* Main cursor */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference"
+        className="fixed top-0 left-0 pointer-events-none z-[100009] mix-blend-difference"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
@@ -221,7 +290,7 @@ export default function EnhancedCursor() {
 
       {/* Magnetic field indicator */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9996]"
+        className="fixed top-0 left-0 pointer-events-none z-[100006]"
         style={{
           x: trailX,
           y: trailY,

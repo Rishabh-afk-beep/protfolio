@@ -1,4 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { useSoundEffects } from '@/hooks/useSoundEffects';
 import MagneticButton from './MagneticButton';
 
 const navLinks = [
@@ -9,6 +10,7 @@ const navLinks = [
 
 export default function BrutalistNav() {
   const { scrollY } = useScroll();
+  const { playHover, playClick } = useSoundEffects();
   const borderOpacity = useTransform(scrollY, [0, 100], [0, 1]);
 
   return (
@@ -18,7 +20,7 @@ export default function BrutalistNav() {
     >
       <nav className="flex items-center justify-between p-4 md:p-6">
         {/* Logo */}
-        <MagneticButton href="#" data-cursor="HOME">
+        <MagneticButton href="#" data-cursor="HOME" onMouseEnter={() => playHover()} onClick={() => playClick()}>
           <span className="text-display text-3xl md:text-4xl">
             RD<span className="text-electric">.</span>
           </span>
@@ -27,7 +29,7 @@ export default function BrutalistNav() {
         {/* Nav links - Desktop */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <MagneticButton key={link.label} href={link.href} data-cursor={link.label}>
+            <MagneticButton key={link.label} href={link.href} data-cursor={link.label} onMouseEnter={() => playHover()} onClick={() => playClick()}>
               <span className="font-mono text-sm hover:text-electric transition-colors relative group">
                 {link.label}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-electric transition-all duration-300 group-hover:w-full" />
@@ -41,6 +43,8 @@ export default function BrutalistNav() {
           href="#contact"
           data-cursor="HIRE"
           className="electric-bg text-raw-black font-mono text-sm px-6 py-3 font-bold hover-brutal border-2 border-foreground"
+          onMouseEnter={() => playHover()}
+          onClick={() => playClick()}
         >
           HIRE ME
         </MagneticButton>

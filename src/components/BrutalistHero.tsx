@@ -155,11 +155,11 @@ export default function BrutalistHero() {
         transition={{ delay: 1.6 }}
         className="flex justify-between items-end relative z-10"
       >
-        <div className="flex items-end gap-4">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-end gap-4 w-full sm:w-auto">
           <MagneticButton
             onClick={scrollToProjects}
             data-cursor="SCROLL"
-            className="border-4 border-foreground px-8 py-4 font-mono text-lg hover-brutal bg-background group"
+            className="border-4 border-foreground px-6 py-3 md:px-8 md:py-4 font-mono text-base md:text-lg hover-brutal bg-background group text-center"
           >
             <span className="group-hover:text-electric transition-colors">VIEW WORK</span>
             <motion.span 
@@ -173,14 +173,14 @@ export default function BrutalistHero() {
 
           <MagneticButton
             data-cursor="DOWNLOAD"
-            className="border-4 border-electric px-8 py-4 font-mono text-lg hover-brutal electric-bg text-raw-black group"
+            className="border-4 border-electric px-6 py-3 md:px-8 md:py-4 font-mono text-base md:text-lg hover-brutal electric-bg text-raw-black group flex justify-center"
           >
             <a 
               href="/resume.pdf" 
-              download="Rishabh_Ranjan_Dangi_Resume.pdf"
-              className="flex items-center gap-2"
+              download="resume.pdf"
+              className="flex items-center gap-2 justify-center"
             >
-              <Download className="w-5 h-5" />
+              <Download className="w-4 h-4 md:w-5 md:h-5" />
               <span>RESUME</span>
             </a>
           </MagneticButton>

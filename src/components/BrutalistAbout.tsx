@@ -84,22 +84,22 @@ export default function BrutalistAbout() {
             </div>
 
             {/* Stats */}
-            <StaggerContainer className="grid grid-cols-3 gap-4 pt-8 border-t-2 border-foreground">
+            <StaggerContainer className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-4 pt-8 border-t-2 border-foreground">
               <StaggerItem>
                 <div className="group">
                   <motion.div 
-                    className="text-display text-5xl md:text-6xl text-electric"
+                    className="text-display text-6xl text-electric"
                     whileHover={{ scale: 1.1 }}
                   >
                     <TextScramble scrambleOnHover>0-1</TextScramble>
                   </motion.div>
-                  <div className="font-mono text-xs text-muted-foreground mt-2 group-hover:text-electric transition-colors">YEARS EXP</div>
+                  <div className="font-mono text-sm sm:text-xs text-muted-foreground mt-2 group-hover:text-electric transition-colors">YEARS EXP</div>
                 </div>
               </StaggerItem>
               <StaggerItem>
                 <div className="group">
                   <motion.div 
-                    className="text-display text-5xl md:text-6xl"
+                    className="text-display text-6xl"
                     whileHover={{ scale: 1.1 }}
                   >
                     <TextScramble scrambleOnHover>5+</TextScramble>
@@ -110,12 +110,12 @@ export default function BrutalistAbout() {
               <StaggerItem>
                 <div className="group">
                   <motion.div 
-                    className="text-display text-5xl md:text-6xl text-electric"
+                    className="text-display text-6xl text-electric"
                     whileHover={{ scale: 1.1, rotate: 15 }}
                   >
                     2
                   </motion.div>
-                  <div className="font-mono text-xs text-muted-foreground mt-2 group-hover:text-electric transition-colors">HACKATHON WINS</div>
+                  <div className="font-mono text-sm sm:text-xs text-muted-foreground mt-2 group-hover:text-electric transition-colors">HACKATHON WINS</div>
                 </div>
               </StaggerItem>
             </StaggerContainer>

@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useSoundEffects } from '@/hooks/useSoundEffects';
-import { simulateAIResponse } from '@/utils/aiLogic';
 
 type CommandHistory = {
   command: string;
@@ -52,7 +51,7 @@ export default function InteractiveTerminal() {
     
     const lowerCmd = cmd.toLowerCase();
     let response: string | React.ReactNode = '';
-    let useAI = false;
+    let needsTypewriter = false;
     
     setInput('');
     setIsProcessing(true);
@@ -94,28 +93,29 @@ export default function InteractiveTerminal() {
       playSuccess();
       window.dispatchEvent(new CustomEvent('trigger-physics'));
     } else {
-      useAI = true;
+      response = "COMMAND UNRECOGNIZED. TYPE 'help' FOR A LIST OF AVAILABLE COMMANDS.";
+      needsTypewriter = true;
     }
 
-    if (useAI) {
-      // Show a loading state temporarily
+    if (needsTypewriter) {
+      // Show a processing state temporarily
       setHistory(prev => {
         const newHistory = [...prev];
-        newHistory[newHistory.length - 1].response = 'PROCESSING QUERY...';
+        newHistory[newHistory.length - 1].response = 'PROCESSING...';
         return newHistory;
       });
 
-      const aiText = await simulateAIResponse(cmd);
-      
-      // Replace processing state with streaming text
-      setHistory(prev => {
-        const newHistory = [...prev];
-        newHistory[newHistory.length - 1].response = (
-          <TypewriterText text={aiText} onComplete={() => setIsProcessing(false)} />
-        );
-        newHistory[newHistory.length - 1].isStreaming = true;
-        return newHistory;
-      });
+      // Give it a tiny fake delay for aesthetic
+      setTimeout(() => {
+        setHistory(prev => {
+          const newHistory = [...prev];
+          newHistory[newHistory.length - 1].response = (
+            <TypewriterText text={response as string} onComplete={() => setIsProcessing(false)} />
+          );
+          newHistory[newHistory.length - 1].isStreaming = true;
+          return newHistory;
+        });
+      }, 300);
     } else {
       // Standard hardcoded response instantly
       setHistory(prev => {
@@ -158,7 +158,7 @@ export default function InteractiveTerminal() {
         <div className="w-3 h-3 bg-hot-red" />
         <div className="w-3 h-3 bg-electric" />
         <div className="w-3 h-3 bg-cold-blue" />
-        <span className="ml-2 text-muted-foreground font-bold tracking-widest">RISHABH_TERM.EXE [AI-ENABLED]</span>
+        <span className="ml-2 text-muted-foreground font-bold tracking-widest">RISHABH_TERM.EXE [SECURE]</span>
       </div>
       
       {/* Terminal Body */}

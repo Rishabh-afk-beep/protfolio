@@ -50,7 +50,7 @@ export default function BrutalistContact() {
   };
 
   return (
-    <section id="contact" className="min-h-screen p-6 md:p-12 noise relative overflow-hidden" ref={ref}>
+    <section id="contact" className="min-h-screen p-6 md:p-12 pb-32 md:pb-12 noise relative overflow-hidden" ref={ref}>
       {/* Background number */}
       <div className="absolute top-0 right-0 text-[40vw] font-display text-foreground/[0.02] leading-none pointer-events-none select-none">
         04

@@ -33,7 +33,7 @@ const TypewriterText = ({ text, onComplete }: { text: string; onComplete?: () =>
 
 export default function InteractiveTerminal() {
   const [history, setHistory] = useState<CommandHistory[]>([
-    { command: '', response: 'SYSTEM_READY. TYPE "help" FOR AVAILABLE COMMANDS OR ASK A QUESTION.\n\n[HINT: TRY TYPING "matrix", "play doom", OR "sudo rm -rf /" FOR COOL EASTER EGGS]' }
+    { command: '', response: 'SYSTEM_READY. TYPE "help" FOR AVAILABLE COMMANDS.\n\n[HINT: TRY TYPING "matrix", "play doom", OR "sudo rm -rf /" FOR COOL EASTER EGGS]' }
   ]);
   const [input, setInput] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
@@ -61,7 +61,7 @@ export default function InteractiveTerminal() {
     setHistory(prev => [...prev, { command: cmd, response: '' }]);
 
     if (lowerCmd === 'help') {
-      response = 'COMMANDS: help, whoami, skills, contact, clear, matrix, play doom, sudo rm -rf /\nOR: Just ask a question naturally (e.g. "What are your skills?")';
+      response = 'COMMANDS: help, whoami, skills, contact, clear, matrix, play doom, sudo rm -rf /';
     } else if (lowerCmd === 'whoami') {
       response = 'RISHABH RANJAN DANGI\nROLE: INFORMATION SCIENCE STUDENT & AI DEVELOPER\nLOCATION: BENGALURU';
     } else if (lowerCmd === 'skills') {

@@ -14,6 +14,7 @@ export default function SoundToggle() {
     <motion.button
       onClick={handleClick}
       className="fixed bottom-6 left-6 z-50 w-12 h-12 border-2 border-foreground bg-background flex items-center justify-center group"
+      aria-label="Toggle sound"
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
       initial={{ opacity: 0, y: 20 }}

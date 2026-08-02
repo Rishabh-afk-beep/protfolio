@@ -37,6 +37,7 @@ export default function ThemeToggle() {
       onClick={() => setIsDark(!isDark)}
       className="fixed bottom-6 right-6 z-50 w-16 h-16 border-4 border-foreground bg-background flex items-center justify-center hover-brutal"
       data-cursor="THEME"
+      aria-label="Toggle theme"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
     >

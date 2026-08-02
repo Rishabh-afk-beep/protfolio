@@ -35,7 +35,7 @@ export default function PreLoader({ onComplete }: { onComplete: () => void }) {
 
   return (
     <motion.div 
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background noise overflow-hidden"
+      className="fixed inset-0 z-[100] w-screen h-[100dvh] flex flex-col items-center justify-center bg-background noise overflow-hidden"
       initial={{ y: 0 }}
       exit={{ y: '-100%', transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } }}
     >

@@ -74,9 +74,14 @@ const Index = () => {
         <MatrixRain active={matrixActive} />
         <PageGlitch />
         <EnhancedCursor />
-        <ThemeToggle />
-        <SoundToggle />
-        <BrutalistNav />
+        
+        {!loading && (
+          <>
+            <ThemeToggle />
+            <SoundToggle />
+            <BrutalistNav />
+          </>
+        )}
 
         {/* Main Content — only mounts after preloader finishes */}
         <AnimatePresence>

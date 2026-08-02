@@ -188,7 +188,7 @@ export default function InteractiveTerminal() {
         {!isProcessing && (
           <form onSubmit={handleCommand} className="flex gap-2 text-electric pt-2">
             <span>C:\USERS\RISHABH&gt;</span>
-            <input
+              <input
               ref={inputRef}
               type="text"
               value={input}
@@ -196,7 +196,6 @@ export default function InteractiveTerminal() {
               className="flex-1 bg-transparent border-none outline-none text-foreground caret-electric"
               spellCheck="false"
               autoComplete="off"
-              autoFocus
             />
           </form>
         )}

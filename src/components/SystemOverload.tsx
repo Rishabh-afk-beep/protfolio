@@ -45,9 +45,8 @@ export default function SystemOverload() {
       }, 3500);
     };
 
-    window.addEventListener('mousedown', handleAction);
+    window.addEventListener('click', handleAction);
     window.addEventListener('keydown', handleAction);
-    window.addEventListener('touchstart', handleAction);
 
     // Decay stress faster so it only triggers on truly rapid spamming
     const decayInterval = setInterval(() => {
@@ -58,9 +57,8 @@ export default function SystemOverload() {
     }, 1000);
 
     return () => {
-      window.removeEventListener('mousedown', handleAction);
+      window.removeEventListener('click', handleAction);
       window.removeEventListener('keydown', handleAction);
-      window.removeEventListener('touchstart', handleAction);
       clearInterval(decayInterval);
     };
   }, [playGlitch]);

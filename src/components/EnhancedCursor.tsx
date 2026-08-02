@@ -15,7 +15,12 @@ export default function EnhancedCursor() {
   const [cursorText, setCursorText] = useState('');
   const [cursorVariant, setCursorVariant] = useState<'default' | 'link' | 'text' | 'image'>('default');
   const [particles, setParticles] = useState<Particle[]>([]);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const particleId = useRef(0);
+
+  useEffect(() => {
+    setIsTouchDevice(window.matchMedia('(hover: none) and (pointer: coarse)').matches);
+  }, []);
 
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
@@ -181,6 +186,8 @@ export default function EnhancedCursor() {
     if (isHovering) return 3;
     return 1;
   };
+
+  if (isTouchDevice) return null;
 
   return (
     <>

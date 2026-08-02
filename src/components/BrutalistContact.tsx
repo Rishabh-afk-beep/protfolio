@@ -96,7 +96,7 @@ export default function BrutalistContact() {
                   <div className="font-mono text-xs text-muted-foreground mb-2">EMAIL</div>
                   <a 
                     href="mailto:ranjanrishabh2002@gmail.com" 
-                    className="text-2xl font-bold hover:text-electric transition-colors"
+                    className="text-base md:text-2xl font-bold hover:text-electric transition-colors break-all"
                     data-cursor="EMAIL"
                   >
                     <TextScramble scrambleOnHover revealOnScroll={false}>RANJANRISHABH2002@GMAIL.COM</TextScramble>
@@ -105,19 +105,19 @@ export default function BrutalistContact() {
 
                 <TiltCard tiltAmount={8} className="border-l-4 border-foreground pl-6 py-4">
                   <div className="font-mono text-xs text-muted-foreground mb-2">SOCIALS</div>
-                  <div className="flex gap-6">
+                  <div className="flex gap-4 md:gap-6">
                     <MagneticButton href="https://github.com/Rishabh-afk-beep" data-cursor="GH">
-                      <span className="text-lg font-bold hover:text-electric transition-colors">GITHUB</span>
+                      <span className="text-base md:text-lg font-bold hover:text-electric transition-colors">GITHUB</span>
                     </MagneticButton>
                     <MagneticButton href="https://www.linkedin.com/in/rishabhranjan1221/" data-cursor="IN">
-                      <span className="text-lg font-bold hover:text-electric transition-colors">LINKEDIN</span>
+                      <span className="text-base md:text-lg font-bold hover:text-electric transition-colors">LINKEDIN</span>
                     </MagneticButton>
                   </div>
                 </TiltCard>
 
                 <TiltCard tiltAmount={8} className="border-l-4 border-foreground pl-6 py-4">
                   <div className="font-mono text-xs text-muted-foreground mb-2">LOCATION</div>
-                  <div className="text-lg">BENGALURU, INDIA</div>
+                  <div className="text-base md:text-lg">BENGALURU, INDIA</div>
                   <div className="font-mono text-sm text-muted-foreground flex items-center gap-2">
                     <motion.span 
                       className="w-2 h-2 bg-electric rounded-full"
@@ -135,8 +135,8 @@ export default function BrutalistContact() {
                   >
                     <a 
                       href="/resume.pdf" 
-                      download="Rishabh_Ranjan_Dangi_Resume.pdf"
-                      className="flex items-center gap-3 text-lg font-bold hover:text-electric transition-colors"
+                      download="resume.pdf"
+                      className="flex items-center gap-3 text-base md:text-lg font-bold hover:text-electric transition-colors"
                     >
                       <Download className="w-5 h-5" />
                       <TextScramble scrambleOnHover revealOnScroll={false}>DOWNLOAD CV</TextScramble>
@@ -152,7 +152,7 @@ export default function BrutalistContact() {
             <TiltCard tiltAmount={3}>
               <motion.form
                 onSubmit={handleSubmit}
-                className="space-y-6 p-6 border-4 border-foreground bg-card/50 backdrop-blur-sm"
+                className="space-y-6 p-4 md:p-6 border-4 border-foreground bg-card/50 backdrop-blur-sm"
               >
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div className={`transition-transform duration-300 ${focusedField === 'name' ? 'scale-[1.02]' : ''}`}>

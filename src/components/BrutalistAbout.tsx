@@ -70,26 +70,98 @@ export default function BrutalistAbout() {
         {/* Left column - Bio & Profile */}
         <ScrollReveal variant="slide" delay={0.1}>
           <div className="space-y-8">
-            {/* Profile Image */}
-            <div className="w-full sm:w-3/4 md:w-full lg:w-4/5 xl:w-2/3 aspect-square border-4 border-foreground relative group overflow-hidden bg-muted">
-              {/* Halftone / Colored Overlay */}
-              <div className="absolute inset-0 bg-electric mix-blend-multiply opacity-50 z-10 group-hover:opacity-0 transition-opacity duration-500 pointer-events-none" />
-              {/* Scanlines */}
-              <div className="absolute inset-0 scanlines opacity-30 z-10 pointer-events-none" />
-              
-              <img 
-                src="/assets/profile.jpg" 
-                alt="Rishabh Ranjan"
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/assets/placeholder.svg';
-                }}
-              />
-              
-              {/* Brutalist Badge */}
-              <div className="absolute bottom-4 right-4 z-20 font-mono text-xs font-bold bg-foreground text-background px-2 py-1 flex items-center gap-2 border-2 border-background">
-                <span className="w-2 h-2 bg-hot-red animate-pulse" />
-                [ ID: RISHABH ]
+            {/* Profile Image - Creative Identity Card */}
+            <div className="relative w-full sm:w-3/4 md:w-full lg:w-4/5">
+
+              {/* Floating tech tags */}
+              <motion.div
+                className="absolute -top-4 -right-4 z-30 font-mono text-xs bg-electric text-raw-black px-2 py-1 font-bold hidden sm:block"
+                animate={{ y: [0, -6, 0] }}
+                transition={{ repeat: Infinity, duration: 2.5 }}
+              >
+                AI_DEV.exe
+              </motion.div>
+              <motion.div
+                className="absolute top-1/3 -left-6 z-30 font-mono text-xs border-2 border-hot-red text-hot-red px-2 py-1 font-bold hidden sm:block"
+                animate={{ x: [0, -4, 0] }}
+                transition={{ repeat: Infinity, duration: 3, delay: 0.5 }}
+              >
+                FULLSTACK
+              </motion.div>
+              <motion.div
+                className="absolute bottom-16 -right-6 z-30 font-mono text-xs border-2 border-cold-blue text-cold-blue px-2 py-1 font-bold hidden sm:block"
+                animate={{ y: [0, 5, 0] }}
+                transition={{ repeat: Infinity, duration: 2, delay: 1 }}
+              >
+                RAG/LLM
+              </motion.div>
+
+              {/* Main image frame */}
+              <div className="aspect-square border-4 border-foreground relative group overflow-hidden bg-muted">
+                
+                {/* Targeting corner brackets — animated in on hover */}
+                <div className="absolute top-2 left-2 w-6 h-6 border-t-2 border-l-2 border-electric z-20 opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                <div className="absolute top-2 right-2 w-6 h-6 border-t-2 border-r-2 border-electric z-20 opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                <div className="absolute bottom-2 left-2 w-6 h-6 border-b-2 border-l-2 border-electric z-20 opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                <div className="absolute bottom-2 right-2 w-6 h-6 border-b-2 border-r-2 border-electric z-20 opacity-0 group-hover:opacity-100 transition-all duration-300" />
+
+                {/* Scanning line animation */}
+                <motion.div
+                  className="absolute left-0 right-0 h-0.5 bg-electric/60 z-20 pointer-events-none"
+                  animate={{ top: ['0%', '100%', '0%'] }}
+                  transition={{ repeat: Infinity, duration: 3.5, ease: 'linear' }}
+                />
+
+                {/* Colored overlay — lifts on hover */}
+                <div className="absolute inset-0 bg-electric mix-blend-multiply opacity-40 z-10 group-hover:opacity-0 transition-opacity duration-700 pointer-events-none" />
+                {/* Scanlines */}
+                <div className="absolute inset-0 scanlines opacity-30 z-10 pointer-events-none" />
+                
+                <img 
+                  src="/assets/profile.jpg" 
+                  alt="Rishabh Ranjan"
+                  className="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = '/placeholder.svg';
+                  }}
+                />
+
+                {/* SCANNING label */}
+                <div className="absolute top-4 left-4 z-20 font-mono text-[10px] text-electric opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  SCANNING...
+                </div>
+                
+                {/* Bottom badge */}
+                <div className="absolute bottom-0 left-0 right-0 z-20 bg-background/90 border-t-2 border-electric px-3 py-2 flex items-center justify-between transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                  <span className="font-mono text-xs text-electric flex items-center gap-2">
+                    <span className="w-2 h-2 bg-hot-red animate-pulse rounded-none" />
+                    IDENTITY CONFIRMED
+                  </span>
+                  <span className="font-mono text-xs text-muted-foreground">BLR, IND</span>
+                </div>
+              </div>
+
+              {/* Terminal-style metadata card below image */}
+              <div className="border-2 border-foreground border-t-0 bg-card p-4 font-mono text-xs space-y-1">
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">NAME</span>
+                  <span className="text-foreground">RISHABH RANJAN DANGI</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">ROLE</span>
+                  <span className="text-electric">AI + FULLSTACK DEV</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">STATUS</span>
+                  <span className="text-hot-red flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 bg-hot-red animate-ping inline-block" />
+                    OPEN TO HIRE
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">LOC</span>
+                  <span className="text-cold-blue">BENGALURU, IND</span>
+                </div>
               </div>
             </div>
 

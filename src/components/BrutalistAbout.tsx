@@ -1,8 +1,34 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import ScrollReveal, { StaggerContainer, StaggerItem } from './ScrollReveal';
 import TextScramble from './TextScramble';
 import { FloatingElement } from './ParallaxSection';
+
+function AnimatedCounter({ target, suffix = '' }: { target: number, suffix?: string }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-50px' });
+
+  useEffect(() => {
+    if (!inView) return;
+    let start = 0;
+    const duration = 2000;
+    const increment = target / (duration / 16);
+    
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 16);
+    return () => clearInterval(timer);
+  }, [target, inView]);
+
+  return <span ref={ref}>{count}{suffix}</span>;
+}
 
 const skills = [
   { name: 'JAVA', level: 90, color: 'electric' },
@@ -186,9 +212,9 @@ export default function BrutalistAbout() {
                     className="text-display text-6xl text-electric"
                     whileHover={{ scale: 1.1 }}
                   >
-                    <TextScramble scrambleOnHover>0-1</TextScramble>
+                    <AnimatedCounter target={1} />
                   </motion.div>
-                  <div className="font-mono text-sm sm:text-xs text-muted-foreground mt-2 group-hover:text-electric transition-colors">YEARS EXP</div>
+                  <div className="font-mono text-sm sm:text-xs text-muted-foreground mt-2 group-hover:text-electric transition-colors">YEAR EXP</div>
                 </div>
               </StaggerItem>
               <StaggerItem>
@@ -197,7 +223,7 @@ export default function BrutalistAbout() {
                     className="text-display text-6xl"
                     whileHover={{ scale: 1.1 }}
                   >
-                    <TextScramble scrambleOnHover>5+</TextScramble>
+                    <AnimatedCounter target={5} suffix="+" />
                   </motion.div>
                   <div className="font-mono text-xs text-muted-foreground mt-2 group-hover:text-electric transition-colors">PROJECTS</div>
                 </div>
@@ -208,7 +234,7 @@ export default function BrutalistAbout() {
                     className="text-display text-6xl text-electric"
                     whileHover={{ scale: 1.1, rotate: 15 }}
                   >
-                    2
+                    <AnimatedCounter target={2} />
                   </motion.div>
                   <div className="font-mono text-sm sm:text-xs text-muted-foreground mt-2 group-hover:text-electric transition-colors">HACKATHON WINS</div>
                 </div>

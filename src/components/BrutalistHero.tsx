@@ -62,8 +62,11 @@ export default function BrutalistHero() {
           <div>STATUS: <span className="text-electric pulse-glow inline-block px-1">OPEN TO OPPORTUNITIES</span></div>
         </div>
         <div className="font-mono text-sm text-right text-muted-foreground">
+          <div className="text-electric font-bold tracking-widest">
+            {time.getHours() < 12 ? 'GOOD MORNING' : time.getHours() < 18 ? 'GOOD AFTERNOON' : 'GOOD EVENING'}, VISITOR
+          </div>
           <div>{time.toLocaleDateString('en-US', { weekday: 'long' }).toUpperCase()}</div>
-          <div className="text-electric text-flicker">{time.toLocaleTimeString('en-US', { hour12: false })}</div>
+          <div className="text-flicker">{time.toLocaleTimeString('en-US', { hour12: false })}</div>
         </div>
       </motion.div>
 

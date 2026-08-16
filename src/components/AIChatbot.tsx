@@ -33,11 +33,22 @@ const KB: Record<string, string> = {
   github: "Rishabh's GitHub: github.com/Rishabh-afk-beep — check it out to see his code quality and contributions!",
   strength: "Rishabh's core strengths are: building agentic AI systems end-to-end, full-stack development, shipping fast under pressure (proven in hackathons), and clean production-ready code.",
   weakness: "He'd say he's still building industry experience, but what he lacks in years he makes up in shipped products and hackathon wins!",
-  why: "Why hire Rishabh? He builds things that work. 2 hackathon wins, 3 production projects, a live e-commerce platform, and a deep passion for AI — he's a rare combination of builder and thinker.",
+  why: "Why should you hire Rishabh? Because he doesn't just write code, he ships products. He's proven he can build complex AI systems (Agentic RAG), scale full-stack apps (NearMyColleges), and perform under pressure (2 hackathon wins). Plus, he's hungry to learn and contribute from day one.",
+  joke: "Why do programmers prefer dark mode? Because light attracts bugs! 🐛 (Rishabh told me that one).",
+  hobby: "When he's not coding or winning hackathons, Rishabh enjoys exploring new AI models, reading tech blogs, and building side projects.",
+  framework: "Rishabh loves React for the frontend and FastAPI for the backend. He's also heavily using LangGraph for AI orchestration right now.",
+  database: "He works with PostgreSQL, MongoDB, ChromaDB (for vector search), and Firebase/Firestore.",
+  cloud: "He has experience deploying on Vercel, Render, and Firebase, along with basic AWS knowledge."
 };
 
 function getBotResponse(input: string): string {
   const lower = input.toLowerCase();
+  
+  // Exact or strongly matching phrases
+  if (lower.includes('why should i hire') || lower.includes('why hire')) return KB.why;
+  if (lower.includes('tell me a joke') || lower.includes('joke')) return KB.joke;
+
+  // General keyword matching
   for (const [key, response] of Object.entries(KB)) {
     if (key === 'default') continue;
     if (lower.includes(key)) return response;

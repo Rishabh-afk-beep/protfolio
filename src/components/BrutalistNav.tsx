@@ -40,12 +40,19 @@ export default function BrutalistNav() {
         className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b-2 border-transparent"
       >
         <nav className="flex items-center justify-between p-4 md:p-6">
-          {/* Logo */}
-          <MagneticButton href="#" data-cursor="HOME" onMouseEnter={() => playHover()} onClick={() => playClick()}>
-            <span className="text-display text-3xl md:text-4xl">
-              RD<span className="text-electric">.</span>
-            </span>
-          </MagneticButton>
+          {/* Logo & Status */}
+          <div className="flex items-center gap-4">
+            <MagneticButton href="#" data-cursor="HOME" onMouseEnter={() => playHover()} onClick={() => playClick()}>
+              <span className="text-display text-3xl md:text-4xl">
+                RD<span className="text-electric">.</span>
+              </span>
+            </MagneticButton>
+            <div className="hidden sm:flex items-center gap-2 border border-electric/30 bg-electric/10 px-2 py-1 ml-2">
+              <span className="w-1.5 h-1.5 bg-hot-red animate-ping absolute" />
+              <span className="w-1.5 h-1.5 bg-hot-red relative" />
+              <span className="font-mono text-[9px] text-electric font-bold tracking-widest whitespace-nowrap">OPEN TO WORK</span>
+            </div>
+          </div>
 
           {/* Nav links - Desktop */}
           <div className="hidden md:flex items-center gap-8">

@@ -67,9 +67,32 @@ export default function BrutalistAbout() {
       </ScrollReveal>
 
       <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
-        {/* Left column - Bio */}
+        {/* Left column - Bio & Profile */}
         <ScrollReveal variant="slide" delay={0.1}>
           <div className="space-y-8">
+            {/* Profile Image */}
+            <div className="w-full sm:w-3/4 md:w-full lg:w-4/5 xl:w-2/3 aspect-square border-4 border-foreground relative group overflow-hidden bg-muted">
+              {/* Halftone / Colored Overlay */}
+              <div className="absolute inset-0 bg-electric mix-blend-multiply opacity-50 z-10 group-hover:opacity-0 transition-opacity duration-500 pointer-events-none" />
+              {/* Scanlines */}
+              <div className="absolute inset-0 scanlines opacity-30 z-10 pointer-events-none" />
+              
+              <img 
+                src="/assets/profile.jpg" 
+                alt="Rishabh Ranjan"
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/assets/placeholder.svg';
+                }}
+              />
+              
+              {/* Brutalist Badge */}
+              <div className="absolute bottom-4 right-4 z-20 font-mono text-xs font-bold bg-foreground text-background px-2 py-1 flex items-center gap-2 border-2 border-background">
+                <span className="w-2 h-2 bg-hot-red animate-pulse" />
+                [ ID: RISHABH ]
+              </div>
+            </div>
+
             <div className="space-y-6">
               <p className="text-2xl md:text-3xl font-light leading-relaxed">
                 I'm an <span className="font-bold gradient-text">Information Science</span> student based in{' '}

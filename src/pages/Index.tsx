@@ -18,7 +18,6 @@ import PhysicsEngine from '@/components/PhysicsEngine';
 import SystemOverload from '@/components/SystemOverload';
 import DoomLevel from '@/components/DoomLevel';
 import CursorTrail from '@/components/CursorTrail';
-import SystemStatsHUD from '@/components/SystemStatsHUD';
 import GitHubActivity from '@/components/GitHubActivity';
 import AIChatbot from '@/components/AIChatbot';
 
@@ -195,7 +194,6 @@ const Index = () => {
             <ThemeToggle />
             <SoundToggle />
             <BrutalistNav />
-            <SystemStatsHUD />
             <GitHubActivity />
             <AIChatbot />
           </>

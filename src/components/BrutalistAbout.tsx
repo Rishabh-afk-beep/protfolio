@@ -1,4 +1,4 @@
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, animate } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
 import ScrollReveal, { StaggerContainer, StaggerItem } from './ScrollReveal';
 import TextScramble from './TextScramble';
@@ -11,20 +11,14 @@ function AnimatedCounter({ target, suffix = '' }: { target: number, suffix?: str
 
   useEffect(() => {
     if (!inView) return;
-    let start = 0;
-    const duration = 2000;
-    const increment = target / (duration / 16);
-    
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
+    const controls = animate(0, target, {
+      duration: 2,
+      ease: "easeOut",
+      onUpdate(value) {
+        setCount(Math.floor(value));
       }
-    }, 16);
-    return () => clearInterval(timer);
+    });
+    return () => controls.stop();
   }, [target, inView]);
 
   return <span ref={ref}>{count}{suffix}</span>;

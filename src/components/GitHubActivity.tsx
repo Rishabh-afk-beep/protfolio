@@ -45,17 +45,24 @@ function timeAgo(dateStr: string): string {
 export default function GitHubActivity() {
   const [events, setEvents] = useState<GitHubEvent[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [visible, setVisible] = useState(true);
   const [minimized, setMinimized] = useState(false);
 
   useEffect(() => {
     fetch('https://api.github.com/users/Rishabh-afk-beep/events/public?per_page=8')
-      .then(r => r.json())
+      .then(r => {
+        if (!r.ok) throw new Error('Rate limited');
+        return r.json();
+      })
       .then(data => {
         if (Array.isArray(data)) setEvents(data.slice(0, 8));
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch(() => {
+        setError(true);
+        setLoading(false);
+      });
   }, []);
 
   if (!visible) return null;
@@ -102,6 +109,10 @@ export default function GitHubActivity() {
               {loading ? (
                 <div className="p-3 text-electric animate-pulse text-[10px]">
                   FETCHING COMMITS...
+                </div>
+              ) : error ? (
+                <div className="p-3 text-hot-red text-[10px] font-bold">
+                  API RATE LIMITED. TRY LATER.
                 </div>
               ) : events.length === 0 ? (
                 <div className="p-3 text-muted-foreground text-[10px]">
